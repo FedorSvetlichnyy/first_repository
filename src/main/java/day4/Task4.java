@@ -31,7 +31,6 @@ public class Task4 {
         for (int k:arraySum) {
             if (k > arrayMax)
                 arrayMax = k;
-            continue;
         }
         System.out.println(arrayMax);
 

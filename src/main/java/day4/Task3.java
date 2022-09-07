@@ -36,7 +36,6 @@ public class Task3 {
         for (int k:newArray) {
             if (k > arrayMax)
                 arrayMax = k;
-            continue;
         }
 
         int index = 0;
