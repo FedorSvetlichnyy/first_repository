@@ -6,10 +6,8 @@ public class Task3 {
     public static void main(String[] args) {
         Teacher teacher = new Teacher("Маргарита Васильевна","Информатика");
         Student student = new Student("Петя"); //создаем объект студент с именем Петя
-        teacher.evaluate("Петя"); //вызывыем метод оценки студента
+        teacher.evaluate(student); //вызывыем метод оценки студента
 
-        //знаю, что неверно решил, не хочу пока смотреть правильный код. Потом посмотрю ваш комментарий и исправлю.
-        // но текст "Преподаватель Маргарита Васильевна оценил(а) студента с именем Петя по предмету Информатика на оценку хорошо." выводит
 
     }
 }
@@ -27,7 +25,7 @@ class Teacher{
         return nameTeacher;
     }*/
 
-    public void evaluate(String student){
+    public void evaluate(Student a){
         String rating = ""; //объявляем переменную, которая будет показывать вместо цифр 2-5 "отлично" и тд
         Random random = new Random();
         int i = random.nextInt(4)+2; //случайное число от 2 до 5
@@ -35,12 +33,15 @@ class Teacher{
         if(i == 4) rating = "хорошо";
         if(i == 3) rating = "удовлетворительно";
         if(i == 2) rating = "неудовлетворительно";
-        System.out.println("Преподаватель " + nameTeacher + " оценил(а) студента с именем " + student + " по предмету " + subject + " на оценку " + rating + ".");
+        System.out.println("Преподаватель " + nameTeacher + " оценил(а) студента с именем " + a.getNameStudent() + " по предмету " + subject + " на оценку " + rating + ".");
     }
 }
 class Student{
     private String nameStudent;
     public Student(String nameStudent){
+        this.nameStudent = nameStudent;
+    }
+    public void setNameStudent(String nameStudent){
         this.nameStudent = nameStudent;
     }
     public String getNameStudent(){
