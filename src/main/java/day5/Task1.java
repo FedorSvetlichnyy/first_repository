@@ -8,7 +8,6 @@ public class Task1 {
         car.setColor("красный");
         car.setYear(1978);
         System.out.println("У меня машина " + car.getModel() + ", цвет " + car.getColor() + ", " + car.getYear() + " года выпуска.");
-
     }
 }
 class Cars{
