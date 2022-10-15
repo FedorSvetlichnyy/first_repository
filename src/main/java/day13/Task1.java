@@ -42,18 +42,20 @@ class User {
         subscriptions.add(user);
     }
     public boolean isSubscribed(User user){
-        for (User x : getSubscriptions()) {
+        return this.subscriptions.contains(user);
+        /*for (User x : getSubscriptions()) {
             if(user.equals(x.getSubscriptions()))
                 return true;
         }
-        return false;
+        return false;*/
     }
     public boolean isFriend(User user){
-        for (User x : subscriptions) {
+        return this.subscriptions.contains(user) & user.subscriptions.contains(this);
+        /*for (User x : subscriptions) {
             if(user.equals(x.getSubscriptions()) & this.equals(x.getSubscriptions()))
                 return true;
         }
-        return false;
+        return false;*/
     }
     public void sendMessage(User user, String text){ //отправл€ет сообщение с текстом text пользователю user. «десь должен использоватьс€ статический метод из MessageDatabase.
         addNewMessage(this, user, text);
