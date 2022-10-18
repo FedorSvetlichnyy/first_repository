@@ -14,44 +14,37 @@ public class Task2 {
         System.out.println(parseFileToStringList(file));
 
     }
-    public static List<String> parseFileToStringList(File file) {
-        try {
-            getNegativeNumbers(file);
-        } catch (IOException e) {
-            System.out.println("Некорректный входной файл / Invalid input file");
-            System.exit(0);
-        }
 
-        Scanner scanner = null;
+    public static List<String> parseFileToStringList(File file) {
+        getNegativeNumbers(file);
+
         try {
-            scanner = new Scanner(file);
+            Scanner scanner = new Scanner(file);
+            List<String> list = new ArrayList<String>();
+            while (scanner.hasNextLine()) {
+                list.add(scanner.nextLine());
+            }
+            scanner.close();
+            return list;
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден / File not found");
         }
-
-        List<String> list = new ArrayList<String>();
-        while (scanner.hasNextLine()){
-            list.add(scanner.nextLine());
-        }
-        //System.out.println(list);
-        scanner.close();
-        return list;
+        return null;
     }
 
-    public static void getNegativeNumbers(File file) throws IOException {
-        Scanner scanner = null;
+    public static void getNegativeNumbers(File file) {
         try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден / File not found");
-        }
-        while (scanner.hasNextLine()){
-            String line = scanner.nextLine();
-            if(line.contains(" -")){
-                throw new IOException();
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] x = line.split(" ");
+                if (Integer.parseInt(x[1]) < 0) throw new IOException("Invalid input file");
             }
+            scanner.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
         }
-        scanner.close();
 
     }
 }

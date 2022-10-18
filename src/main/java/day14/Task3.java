@@ -9,46 +9,42 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Task3 {
-    public static void main(String[] args) throws IOException {
-        File file = new File("people.txt");
+    public static void main(String[] args) {
+        File file = new File("people2.txt");
         System.out.println(parseFileToObjList(file).toString());
     }
 
-    public static List<Person> parseFileToObjList(File file) throws IOException {
-        Scanner scanner = null;
+    public static List<Person> parseFileToObjList(File file) {
+
         try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден / File not found");
-        }
-        try {
+            Scanner scanner = new Scanner(file);
             List<Person> list = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] x = line.split(" ");
                 Person person = new Person(x[0], Integer.parseInt(x[1]));
-                if (Integer.parseInt(x[1]) < 0) {
-                    throw new IOException();
-                }
+                if (Integer.parseInt(x[1]) < 0) throw new IOException("Invalid input file");
                 list.add(person);
             }
             scanner.close();
             return list;
         } catch (IOException e) {
-            System.out.println("Некорректный входной файл / Invalid input file");
+            System.out.println(e.getMessage());
             System.exit(0);
         }
         return null;
     }
 }
-class Person{
+
+class Person {
     private int age;
     private String name;
 
-    public Person (String name, int age){
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
+
     public String toString() {
         return "name='" + this.name + "', year=" + this.age;
     }
