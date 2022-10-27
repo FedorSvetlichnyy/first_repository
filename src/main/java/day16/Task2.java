@@ -28,12 +28,22 @@ public class Task2 {
         scanner.close();
 
         double[] arraySum = new double[50];
-        for (int i = 0, j = 0; i < numbers.length; i++, j++) {
-            //!!!!!please explain how to shorten this code ...numbers[++i] + numbers[++i]...
-            arraySum[j] = (double) (numbers[i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] +
+        //перебирай массив, суммируй каждый элемент и подсчитывай кол-во уже пройденных элементов.
+        // Как только кол-во стало равно 20, записывай сумму в файл, обнуляй сумму.
+        // Следующая итерация продолжит суммировать элементы, но прибавляться уже будет к нулю (а не к сумме прошлых двадцати)
+        int sum = 0;
+        for (int i = 0, j = 0; i < numbers.length; i++) {
+            sum = sum + numbers[i];
+            if((i % 20) == 0){
+                arraySum[j] = (double) (sum) / 20;
+                j++;
+                sum = 0;
+            }
+            /*arraySum[j] = (double) (numbers[i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] +
                     numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] +
                     numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] +
-                    numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i]) / 20;
+                    numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i] + numbers[++i]) / 20;*/
+
         }
 
         PrintWriter pw2 = new PrintWriter(file2);
